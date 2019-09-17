@@ -7,24 +7,29 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
+
 @SpringBootApplication
 public class EmailServiceImpl implements CommandLineRunner, EmailService {
 
     @Autowired
     private JavaMailSender javaMailSender;
 
+    //#########################
     public static void main(String[] args) {
         SpringApplication.run(EmailServiceImpl.class, args);
     }
 
     @Override
-    public void run(String... args) {
+    public void run(String... args) throws MessagingException,IOException{
 
         System.out.println("Sending Email...");
 
+
         sendEmail();
-        /*
-        try {
+        sendOtpMessage();
+        /*try {
 
             //sendEmailWithAttachment();
 
@@ -32,22 +37,37 @@ public class EmailServiceImpl implements CommandLineRunner, EmailService {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
-
+        }
+*/
         System.out.println("Done");
 
     }
+    //##############################
 
 
     public void sendEmail() {
 
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo("lucalb10@gmail.com", "stefano.salvo99@gmail.com","marcoquatt98@gmail.com");
+        msg.setTo("alessandra.comparetto@gmail.com");
 
         msg.setSubject("Testing from Spring Boot");
         msg.setText("hello world \n Spring Boot Email");
 
         javaMailSender.send(msg);
+
+    }
+
+    public void sendOtpMessage(){
+        SimpleMailMessage msg = new SimpleMailMessage();
+        String codex=new String();
+        msg.setTo("alessandra.comparetto@gmail.com");
+
+        msg.setSubject("Testing Otp message");
+        OtpService otp= new OtpService();
+        msg.setText("This is your OTP : \n\n"+codex.valueOf(otp.generateOTP("alessandra.comparetto@gmail.com")));
+
+        javaMailSender.send(msg);
+
 
     }
 

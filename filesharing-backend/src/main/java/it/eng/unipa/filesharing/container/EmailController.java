@@ -2,21 +2,22 @@ package it.eng.unipa.filesharing.container;
 
 import it.eng.unipa.filesharing.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/")
 public class EmailController {
 
+    @Autowired
     private EmailService emailService;
     public EmailController(@Autowired EmailService emailService) {this.emailService = emailService;}
 
-    @RequestMapping("/{email}")
+    @GetMapping("/{email}")
     @ResponseBody
-    public void run(@PathVariable("email") String email){
-        emailService.sendEmail();
-    }
+    public void sendEmail(@PathVariable("email") String email){ emailService.sendEmail();}
+
+    @PostMapping("/{email}")
+    @ResponseBody
+    public void sendOtp(@PathVariable("email")String email){emailService.sendOtpMessage();}
+
 }
