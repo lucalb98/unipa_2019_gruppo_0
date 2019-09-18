@@ -30,6 +30,9 @@ import {HttpClientModule} from "@angular/common/http";
 import { FolderDialogComponent } from './dialog/folder-dialog/folder-dialog.component';
 import { FoldersComponent } from './views/folders/folders.component';
 import { MemberPipe } from './pipe/member.pipe';
+import { EmailDialogComponent } from './dialog/email-dialog/email-dialog.component';
+import {AppAuthGuard} from "./keycloak/AuthGuard";
+import { OtpDetailComponent } from './views/otp-detail/otp-detail.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,9 @@ import { MemberPipe } from './pipe/member.pipe';
     BucketDetailComponent,
     FolderDialogComponent,
     FoldersComponent,
-    MemberPipe
+    MemberPipe,
+    EmailDialogComponent,
+    OtpDetailComponent
   ],
     imports: [
         HttpClientModule,
@@ -73,11 +78,12 @@ import { MemberPipe } from './pipe/member.pipe';
     useFactory: initializer,
     multi: true,
     deps: [KeycloakService]
-  }],
+  },
+      AppAuthGuard],
   entryComponents:[
     TeamDialogComponent,
     BucketDialogComponent,
-    FolderDialogComponent
+    FolderDialogComponent, EmailDialogComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -15,11 +15,11 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
             // }
           },
           initOptions: {
-            onLoad: 'login-required',
+            onLoad: 'check-sso',
             checkLoginIframe: false
           },
           enableBearerInterceptor:true,
-          bearerExcludedUrls: []
+          bearerExcludedUrls: ['/api/otp','/otp']
         });
         resolve();
       } catch (error) {

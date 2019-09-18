@@ -6,7 +6,8 @@ import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 export enum SYNC_TYPE {
   Team,
   Bucket,
-  Resource
+  Resource,
+  Email =3
 }
 
 @Injectable({

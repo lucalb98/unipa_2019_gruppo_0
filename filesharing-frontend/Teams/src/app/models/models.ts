@@ -48,4 +48,4 @@ export interface UserRoleDTO {
     active: boolean;
 }
 
-export type TYPE = "BUCKET" | "FOLDER" | "CONTENT";
+export type TYPE = "BUCKET" | "FOLDER" | "CONTENT"|"EMAIL";

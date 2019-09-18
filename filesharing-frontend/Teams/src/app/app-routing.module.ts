@@ -7,8 +7,15 @@ import {TeamsComponent} from "./views/teams/teams.component";
 import {BucketsComponent} from "./views/buckets/buckets.component";
 import {BucketDetailComponent} from "./views/bucket-detail/bucket-detail.component";
 import {FoldersComponent} from "./views/folders/folders.component";
+import {AppAuthGuard} from "./keycloak/AuthGuard";
+import {OtpDetailComponent} from "./views/otp-detail/otp-detail.component";
+
 
 const routes: Routes = [
+  {
+    path:'otp/:token/:email',
+    component:OtpDetailComponent
+  },
   {
     path:'login',
     component: LoginComponent
@@ -20,21 +27,25 @@ const routes: Routes = [
   {
     path:'',
     component: DashboardComponent,
+    canActivate:[AppAuthGuard],
     children:[
       {
         path:'',
-        component:TeamsComponent
+        component:TeamsComponent,
+        canActivate:[AppAuthGuard]
       },
       {
         path:':team',
         component:BucketsComponent,
+        canActivate:[AppAuthGuard]
       },
       {
         path:':team/:bucket',
         children:[
           {
             path:'**',
-            component:BucketDetailComponent
+            component:BucketDetailComponent,
+            canActivate:[AppAuthGuard]
           },
         ]
       }

@@ -7,17 +7,30 @@
         <div style="position:absolute; width: 100%; height: 100%">
             <div  class="files-list d-flex" *ngFor="let file of files?.childs; let i= index">
                 <div *ngIf="file.type == 'CONTENT'" class="file-list-item">
-                    <p (click)="download(file)" class="flex-1"><mat-icon>insert_drive_file</mat-icon> {{ file.name }} </p>
-                    <button class="delete-file" (click)="download(file)">
+                    <p class="flex-1"><mat-icon>insert_drive_file</mat-icon> {{ file.name }} </p>
+                    <button class="delete-file" (click)="LinkDownload(file)" matTooltip="GENERA URL DI CONDIVISIONE"
+                            matTooltipPosition="above" matTooltipClass="a" >
+                        <mat-icon>share</mat-icon>
+                    </button>
+
+
+                    <button class="delete-file" (click)="openDialogEmail(file.uniqueKey)" matTooltip="CONDIVIDI TRAMITE E-MAIL"
+                            matTooltipPosition="above" matTooltipClass="a">
+                            <mat-icon>launch</mat-icon>
+                    </button>
+                    <button class="delete-file" (click)="download(file)" matTooltip="SCARICA FILE"
+                            matTooltipPosition="above" matTooltipClass="a">
                         <mat-icon>cloud_download</mat-icon>
                     </button>
-                    <button class="delete-file" (click)="deleteAttachment(i)">
+                    <button class="delete-file" (click)="deleteAttachment(i)" matTooltip="ELIMINA FILE"
+                            matTooltipPosition="above" matTooltipClass="a">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
                 <div *ngIf="file.type == 'FOLDER'" class="file-list-item">
                     <p [routerLink]="[file.uniqueKey]" class="flex-1"><mat-icon>folder</mat-icon> {{ file.name }} </p>
-                    <button class="delete-file" (click)="deleteAttachment(i)">
+                    <button class="delete-file" (click)="deleteAttachment(i)" matTooltip="ELIMINA CARTELLA"
+                            matTooltipPosition="above" matTooltipClass="a">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>

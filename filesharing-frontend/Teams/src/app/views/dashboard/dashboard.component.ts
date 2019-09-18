@@ -10,6 +10,9 @@ import {BucketService} from "../../services/bucket.service";
 import {FolderDialogComponent} from "../../dialog/folder-dialog/folder-dialog.component";
 import {ResourceService} from "../../services/resource.service";
 import {SYNC_TYPE, SyncService} from "../../services/sync.service";
+import {EmailDialogComponent} from "../../dialog/email-dialog/email-dialog.component";
+import {EmailService} from "../../services/email.service";
+import {EmailDTO} from "../../models/EmailDTO";
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +30,8 @@ export class DashboardComponent implements OnInit {
 
   private urlparams: UrlSegment[];
 
-  constructor(public dialog: MatDialog,
+  constructor(public emailService: EmailService,
+              public dialog: MatDialog,
               private teamService: TeamService,
               private bucketService: BucketService,
               private resourceService: ResourceService,
@@ -133,6 +137,22 @@ export class DashboardComponent implements OnInit {
             }
         });
     }
+    openDialogEmail():void {
+        const dialogRef = this.dialog.open(EmailDialogComponent, {
+            width: '50vw',
+            data: {}
+        });
+        this.showMenu = false;
+        dialogRef.afterClosed().subscribe((result: EmailDTO) => {
+            if (result) {
+                // result.email.push({email: "Default"});
+                this.emailService.sendEmail(result).subscribe(data => {
+                    this.syncService.sendEvent(SYNC_TYPE.Email);
+                });
+            }
+        })
+    }
+
 
 
 }

@@ -11,6 +11,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
+
 }
 
 .file-list-item{
@@ -19,11 +20,29 @@
   cursor: pointer;
 }
 
-mat-icon{
-  vertical-align: bottom;
+.a{
+  background: #db3236;
 }
+
 
 .breadcrumb{
   //flex: 1;
   font-weight: bold;
+}
+button[mat-stroked-button]{
+  background: transparent;
+  color: white;
+  border: none;
+  flex: 0 1 64px;
+}
+.sub-menu [mat-mini-fab]{
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.tooltip{
+  font-size: 10px;
+  background: red;
+}
+.sub-menu{
+  text-align: right;
 }

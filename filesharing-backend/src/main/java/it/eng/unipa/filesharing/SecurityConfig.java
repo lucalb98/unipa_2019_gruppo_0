@@ -68,7 +68,9 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
         super.configure(http);
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/v2/api-docs",
+                .antMatchers("/otp/**",
+                        "/v2/api-docs",
+                        "/h2-console",
                         "/configuration/ui",
                         "/swagger-resources/**",
                         "/configuration/security",
@@ -78,6 +80,6 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
                 .and()
                 .authorizeRequests()
                 .anyRequest().authenticated();
-//                .anyRequest().permitAll();
+          //      .anyRequest().permitAll();
     }
 }

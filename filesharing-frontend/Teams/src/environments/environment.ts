@@ -5,6 +5,7 @@
 export const environment = {
     production: false,
     apiBaseUrl: "/api",
+    sharedUrl:'http://localhost:4200/share',
     keycloak:{
         url:"http://sso.giancarlocompagno.it/auth",
         realm:"GRUPPO 5",
