@@ -33,6 +33,7 @@ import { MemberPipe } from './pipe/member.pipe';
 import { EmailDialogComponent } from './dialog/email-dialog/email-dialog.component';
 import {AppAuthGuard} from "./keycloak/AuthGuard";
 import { OtpDetailComponent } from './views/otp-detail/otp-detail.component';
+import { UrlDetailComponent } from './views/url-detail/url-detail.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { OtpDetailComponent } from './views/otp-detail/otp-detail.component';
     FoldersComponent,
     MemberPipe,
     EmailDialogComponent,
-    OtpDetailComponent
+    OtpDetailComponent,
+    UrlDetailComponent
   ],
     imports: [
         HttpClientModule,

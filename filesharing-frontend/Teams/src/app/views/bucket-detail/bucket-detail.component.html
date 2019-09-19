@@ -22,17 +22,17 @@
                             matTooltipPosition="above" matTooltipClass="a">
                         <mat-icon>cloud_download</mat-icon>
                     </button>
-                    <button class="delete-file" (click)="deleteAttachment(i)" matTooltip="ELIMINA FILE"
+                    <!--button class="delete-file" (click)="deleteAttachment(i)" matTooltip="ELIMINA FILE"
                             matTooltipPosition="above" matTooltipClass="a">
                         <mat-icon>delete</mat-icon>
-                    </button>
+                    </button-->
                 </div>
                 <div *ngIf="file.type == 'FOLDER'" class="file-list-item">
                     <p [routerLink]="[file.uniqueKey]" class="flex-1"><mat-icon>folder</mat-icon> {{ file.name }} </p>
-                    <button class="delete-file" (click)="deleteAttachment(i)" matTooltip="ELIMINA CARTELLA"
+                    <!--button class="delete-file" (click)="deleteAttachment(i)" matTooltip="ELIMINA CARTELLA"
                             matTooltipPosition="above" matTooltipClass="a">
                         <mat-icon>delete</mat-icon>
-                    </button>
+                    </button-->
                 </div>
             </div>
         </div>

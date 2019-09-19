@@ -1,6 +1,6 @@
 #FileLock
-#Wed Sep 18 13:33:02 CEST 2019
-hostName=DESKTOP-IEVNA59
-id=16d4425a1c9ab3cfdc3f040b09d324776df58becbcb
+#Thu Sep 19 15:18:10 CEST 2019
+hostName=192.168.0.39
+id=16d49ac2f48c6b815bb20433ce257597f642693eaf8
 method=file
-server=192.168.43.119\:55856
+server=192.168.0.39\:65237

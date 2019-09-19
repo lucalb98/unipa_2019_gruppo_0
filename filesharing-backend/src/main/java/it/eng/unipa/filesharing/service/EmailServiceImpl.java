@@ -127,6 +127,7 @@ public class EmailServiceImpl implements EmailService {
                 if(bucketResource!=null){
                     Resource contentResource = resourceRepository.read(bucketResource, otp.getUniqueId());
                     if(contentResource!=null){
+                        System.out.println("Sono io");
                         return (ResourceDTO)conversionService.convert(contentResource, TypeDescriptor.valueOf(ContentResource.class), TypeDescriptor.valueOf(ResourceDTO.class));
                     }
                 }

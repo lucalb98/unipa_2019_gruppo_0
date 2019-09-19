@@ -1,0 +1,35 @@
+.finestra{
+  background-color: #db3236;
+  width:1366px;
+  height:497px;
+  position: absolute;
+  top:64px;
+  left:0px;
+
+}
+.example-full-width{
+  width:500px;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+}
+
+.card-pf{
+  background: #fff;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 500px;
+  height: 310px;
+  border-top: 0;
+  box-shadow: 5px 5px 5px 5px #bd2d2d;
+ // vertical-align: center;
+  //horiz-align: center;
+  position: absolute;
+  top: 20%; //200px;
+  left: 30% ;//585px;
+}
+
+
+
