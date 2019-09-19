@@ -1,8 +1,7 @@
-export class OtpDTO {
-    email: string;
-
+export class UrlDTO {
+    uuid: string;
+    uniqueId: string;
     token: string;
-
-    otp: number;
+    bucketName: string;
 
 }

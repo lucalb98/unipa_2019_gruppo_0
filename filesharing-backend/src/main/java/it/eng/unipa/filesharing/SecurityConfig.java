@@ -68,7 +68,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
         super.configure(http);
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/otp/**",
+                .antMatchers("/url/**","/otp/**",
                         "/v2/api-docs",
                         "/h2-console",
                         "/configuration/ui",

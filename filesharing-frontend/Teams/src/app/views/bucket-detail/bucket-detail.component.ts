@@ -13,6 +13,8 @@ import {EmailService} from "../../services/email.service";
 import {EmailDTO} from "../../models/EmailDTO";
 import {ResourceDTO, TeamDTO} from "../../models/models";
 import {environment} from "../../../environments/environment";
+import {UrlService} from "../../services/url.service";
+import {UrlDialogComponent} from "../../dialog/url-dialog/url-dialog.component";
 
 //import {Component, Inject, OnInit} from '@angular/core';
 class PathDescriptor{
@@ -35,6 +37,10 @@ export class BucketDetailComponent implements OnInit {
   public teamDTO: TeamDTO;
   public urlparams: UrlSegment[] = [];
   public folderList: PathDescriptor[];
+  public urluniqueid: string;
+  public urluuid: string;
+  public urltoken: string;
+  public urlbucketname: string;
 
   constructor(public emailService: EmailService,
               public dialog: MatDialog,
@@ -42,7 +48,8 @@ export class BucketDetailComponent implements OnInit {
               private bucketService: BucketService,
               private resourceService: ResourceService,
               private syncService: SyncService,
-              private router: ActivatedRoute) {
+              private router: ActivatedRoute,
+              private urlService:UrlService) {
   }
 
   ngOnInit() {
@@ -119,8 +126,24 @@ export class BucketDetailComponent implements OnInit {
     }, []).join('/');
   }
 
-  LinkDownload(file) {
-    console.log(environment.sharedUrl+'')
+  LinkDownload(file:ResourceDTO) {
+    this.urluniqueid=file.uniqueKey;
+    this.router.paramMap.subscribe(params => {
+      console.log("ROUTE PARAMS");
+      this.team = params.get('team');
+      this.bucket = params.get('bucket');
+      this.urltoken=params.get(':token');
+    });
+    this.urlService.generateUrl( {uuid:this.team, uniqueId:this.urluniqueid, token:this.urltoken, bucketName:this.bucket});
+    const dialogRef = this.dialog.open(UrlDialogComponent, {
+      width:"50vw",
+      data:{}
+    });
+    this.showMenu = false;
+
+
+
+
   }
 
   openDialogEmail(uniqueId: string):void {

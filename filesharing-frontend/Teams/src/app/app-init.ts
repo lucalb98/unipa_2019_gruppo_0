@@ -19,7 +19,7 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
             checkLoginIframe: false
           },
           enableBearerInterceptor:true,
-          bearerExcludedUrls: ['/api/otp','/otp']
+          bearerExcludedUrls: ['/api/otp','/otp','/url']
         });
         resolve();
       } catch (error) {

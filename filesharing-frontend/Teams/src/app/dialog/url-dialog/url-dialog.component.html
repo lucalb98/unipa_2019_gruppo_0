@@ -1,0 +1,56 @@
+<mat-dialog-content>
+    <form class="form"  #bucketForm="ngForm">
+        <mat-form-field class="example-full-width">
+            <input type="text" id="testo "matInput name="name" placeholder="Invia l'url a chi desideri per condividere il file:" value="ciaoooooo">
+        </mat-form-field>
+        <div>
+            <!--button style="float: right" mat-flat-button color="primary" (click)="addEmail()">Invia EmailDTO</button-->
+            <input type="button" id="pulsante" [disabled]="bucketForm.invalid" style="float: right" mat-flat-button color="warn" >Copia</inputbutton>
+        </div>
+    </form>
+</mat-dialog-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--mat-dialog-content>
+   <form class="form1"  #bucketForm="ngForm">
+        <mat-form-field class="example-full-width">
+            <input matInput name="name" placeholder="Nome EmailDTO" required [(ngModel)]="email.email">
+        </mat-form-field>
+
+        <div>
+            <button mat-flat-button color="primary" (click)="addEmail()">Invia EmailDTO</button>
+        </div>
+
+
+    </form>
+</mat-dialog-content>-->
+
+<!--<mat-dialog-content>
+    <form class="form"  #bucketForm="ngForm">
+        <mat-form-field class="example-full-width">
+            <input matInput name="name" placeholder="Nome Team" required [(ngModel)]="team.name">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" *ngFor="let member of team.members; let index = index">
+            <input name="member{{index}}" type="email"  matInput placeholder="Partecipante {{index+1}}" required [(ngModel)]="member.email">
+            <mat-icon matSuffix (click)="deleteContributor(index)">delete</mat-icon>
+        </mat-form-field>
+        <div>
+            <button mat-flat-button color="primary" (click)="addContributor()">Aggiungi Partecipante</button>
+            <button [disabled]="bucketForm.invalid" style="float: right" mat-flat-button color="warn" (click)="createBucket()">Crea Team</button>
+        </div>
+    </form>
+</mat-dialog-content>-->
+
+
+

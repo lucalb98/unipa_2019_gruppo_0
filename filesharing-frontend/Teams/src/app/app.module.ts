@@ -34,6 +34,7 @@ import { EmailDialogComponent } from './dialog/email-dialog/email-dialog.compone
 import {AppAuthGuard} from "./keycloak/AuthGuard";
 import { OtpDetailComponent } from './views/otp-detail/otp-detail.component';
 import { UrlDetailComponent } from './views/url-detail/url-detail.component';
+import { UrlDialogComponent } from './dialog/url-dialog/url-dialog.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { UrlDetailComponent } from './views/url-detail/url-detail.component';
     MemberPipe,
     EmailDialogComponent,
     OtpDetailComponent,
-    UrlDetailComponent
+    UrlDetailComponent,
+    UrlDialogComponent
   ],
     imports: [
         HttpClientModule,
@@ -85,7 +87,7 @@ import { UrlDetailComponent } from './views/url-detail/url-detail.component';
   entryComponents:[
     TeamDialogComponent,
     BucketDialogComponent,
-    FolderDialogComponent, EmailDialogComponent
+    FolderDialogComponent, EmailDialogComponent,UrlDialogComponent
   ],
   bootstrap: [AppComponent]
 })

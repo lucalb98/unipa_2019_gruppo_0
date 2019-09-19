@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {OtpService} from "../../services/otp.service";
+import {UrlService} from "../../services/url.service";
 
 @Component({
   selector: 'app-url-detail',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UrlDetailComponent implements OnInit {
 
-  constructor() { }
+  public uuid: string;
+  public uniqueId: string;
+  private token: string;
+  public bucketName: string;
+
+  constructor(private urlService: UrlService,
+      private router: ActivatedRoute) { }
 
   ngOnInit() {
+  }
+
+
+  public downloadFile(){
+    this.urlService.download({uuid:this.uuid,uniqueId:this.uniqueId,token:this.token,bucketName:this.bucketName});
   }
 
 }

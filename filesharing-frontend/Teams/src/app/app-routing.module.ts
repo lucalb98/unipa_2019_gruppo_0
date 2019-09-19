@@ -9,9 +9,16 @@ import {BucketDetailComponent} from "./views/bucket-detail/bucket-detail.compone
 import {FoldersComponent} from "./views/folders/folders.component";
 import {AppAuthGuard} from "./keycloak/AuthGuard";
 import {OtpDetailComponent} from "./views/otp-detail/otp-detail.component";
+import {UrlDetailComponent} from "./views/url-detail/url-detail.component";
 
 
 const routes: Routes = [
+  {
+    path:'url/:token',
+    component:UrlDetailComponent
+
+  },
+
   {
     path:'otp/:token/:email',
     component:OtpDetailComponent
