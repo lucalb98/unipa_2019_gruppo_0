@@ -39,18 +39,6 @@ public class UrlService {
 
     private TeamService teamService;
 
-    public String generateUrl (UrlDTO urlDTO) {
-        ResourceDTO resourceDTO = teamService.getContent(urlDTO.getUuid(), urlDTO.getBucketName(), urlDTO.getUniqueId());
-
-        if (resourceDTO != null) {
-            urlDTO.setDataScadenza(new Timestamp(System.currentTimeMillis()+TEMPO_VALIDITA));
-            String url = this.sharedUrl + "/" + urlDTO.getToken();
-
-            return url;
-        }
-        return null;
-    }
-
     public  ResourceDTO getContent(UrlDTO urlDTO) {
         Optional<Url> urlOpt = urlRepository.myUrl(urlDTO.getUuid(), urlDTO.getToken());
         if(urlOpt.isPresent()){
@@ -68,7 +56,15 @@ public class UrlService {
         return null;
     }
 
+    public String generateURL(UrlDTO urlDTO) {
+        ResourceDTO resourceDTO = teamService.getContent(urlDTO.getUuid(), urlDTO.getBucketName(), urlDTO.getUniqueId());
 
-    public void generateURL(UrlDTO urlDTO) {
+        if (resourceDTO != null) {
+            urlDTO.setDataScadenza(new Timestamp(System.currentTimeMillis()+TEMPO_VALIDITA));
+            String url = this.sharedUrl + "/" + urlDTO.getToken();
+
+            return url;
+        }
+        return null;
     }
 }

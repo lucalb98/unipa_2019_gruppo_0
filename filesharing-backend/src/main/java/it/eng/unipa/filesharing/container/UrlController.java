@@ -24,8 +24,7 @@ public class UrlController {
     public UrlController(@Autowired UrlService urlService){this.urlService = urlService;}
 
     @PostMapping("")
-    public String generateUrl(@RequestBody UrlDTO urlDTO) {urlService.generateURL(urlDTO);
-    return this.urlService.generateUrl(urlDTO);}
+    public String generateUrl(@RequestBody UrlDTO urlDTO) { return urlService.generateURL(urlDTO); }
 
 
 
