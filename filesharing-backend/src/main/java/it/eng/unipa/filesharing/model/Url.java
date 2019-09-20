@@ -15,6 +15,8 @@ public class Url {
 
    // private String email;
     private UUID uuid;
+    @Column(nullable = true)
+    private String url;
     private String bucketName;
     private String uniqueId;
     @Column(unique = true)
@@ -24,6 +26,13 @@ public class Url {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = true)
     private Date dataScadenza;
+
+    public String getUrl() {
+        return url;
+    }
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
 
     public Date getDataScadenza() {

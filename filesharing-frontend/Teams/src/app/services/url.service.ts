@@ -3,6 +3,9 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {UrlDTO} from "../models/UrlDTO";
 import {share} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {TeamDTO} from "../models/models";
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +13,12 @@ import {share} from "rxjs/operators";
 export class UrlService {
   private baseUrl: string = environment.apiBaseUrl + "/url";
 
+
   constructor(private httpClient: HttpClient) {
   }
 
-  public generateUrl(urlDTO: UrlDTO) {
-    return this.httpClient.post(this.baseUrl, urlDTO);
+  public generateUrl(urlDTO:UrlDTO):Observable<UrlDTO> {
+    return this.httpClient.post<UrlDTO>(this.baseUrl, urlDTO);
   }
 
   public download(urlDTO: UrlDTO) {

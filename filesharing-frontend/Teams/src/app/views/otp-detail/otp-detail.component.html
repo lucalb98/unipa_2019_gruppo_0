@@ -4,7 +4,7 @@
     <mat-dialog-content>
         <form  class="form" #bucketForm="ngForm">
             <mat-form-field class="example-full-width"  >
-                <input type="number" matInput name="name" placeholder="Esempio: 123456 "  required [(ngModel)]="otp">
+                <input type="text" matInput name="name" placeholder="Esempio: 123456 "  required [(ngModel)]="otp">
             </mat-form-field>
             <div>
                 <button mat-raised-button [disabled]="bucketForm.invalid" style="float: right" color="warn" (click)="verificaOTP()">Verifica OTP E Scarica</button>

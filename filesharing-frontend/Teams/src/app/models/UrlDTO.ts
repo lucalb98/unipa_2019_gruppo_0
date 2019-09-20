@@ -3,5 +3,6 @@ export class UrlDTO {
     uniqueId: string;
     token: string;
     bucketName: string;
+    url: string;
 
 }

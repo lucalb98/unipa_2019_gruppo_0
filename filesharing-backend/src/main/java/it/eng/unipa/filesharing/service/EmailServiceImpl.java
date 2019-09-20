@@ -4,7 +4,6 @@ import it.eng.unipa.filesharing.dto.EmailDTO;
 import it.eng.unipa.filesharing.dto.OtpDTO;
 import it.eng.unipa.filesharing.dto.ResourceDTO;
 import it.eng.unipa.filesharing.model.Otp;
-import it.eng.unipa.filesharing.model.Team;
 import it.eng.unipa.filesharing.repository.OtpRepository;
 import it.eng.unipa.filesharing.resource.BucketResource;
 import it.eng.unipa.filesharing.resource.ContentResource;
@@ -12,12 +11,8 @@ import it.eng.unipa.filesharing.resource.Resource;
 import it.eng.unipa.filesharing.resource.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -25,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Optional;
@@ -38,9 +32,9 @@ public class EmailServiceImpl implements EmailService {
 
     private static final long TEMPO_VALIDITA = 5 * 60 * 1000;
     @Autowired
-    private JavaMailSender javaMailSender;
-
-    private ConversionService conversionService;
+     JavaMailSender javaMailSender;
+    @Autowired
+     ConversionService conversionService;
 
 
     @Autowired
@@ -127,7 +121,6 @@ public class EmailServiceImpl implements EmailService {
                 if(bucketResource!=null){
                     Resource contentResource = resourceRepository.read(bucketResource, otp.getUniqueId());
                     if(contentResource!=null){
-                        System.out.println("Sono io");
                         return (ResourceDTO)conversionService.convert(contentResource, TypeDescriptor.valueOf(ContentResource.class), TypeDescriptor.valueOf(ResourceDTO.class));
                     }
                 }

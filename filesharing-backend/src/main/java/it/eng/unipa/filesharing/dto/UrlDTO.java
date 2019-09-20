@@ -9,7 +9,15 @@ public class UrlDTO {
     String token;
     Date dataScadenza=null;
     String bucketName;
+    String url;
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getBucketName() {
         return bucketName;

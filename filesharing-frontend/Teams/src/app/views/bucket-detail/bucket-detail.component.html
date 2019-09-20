@@ -38,3 +38,6 @@
         </div>
     </app-upload-file>
 </div>
+<div class="spinner" *ngIf="showProgress">
+    <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+</div>

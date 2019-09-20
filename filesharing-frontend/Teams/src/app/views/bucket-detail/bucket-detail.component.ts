@@ -15,6 +15,7 @@ import {ResourceDTO, TeamDTO} from "../../models/models";
 import {environment} from "../../../environments/environment";
 import {UrlService} from "../../services/url.service";
 import {UrlDialogComponent} from "../../dialog/url-dialog/url-dialog.component";
+import {UrlDTO} from "../../models/UrlDTO";
 
 //import {Component, Inject, OnInit} from '@angular/core';
 class PathDescriptor{
@@ -41,6 +42,9 @@ export class BucketDetailComponent implements OnInit {
   public urluuid: string;
   public urltoken: string;
   public urlbucketname: string;
+  public url:string;
+
+  public showProgress: boolean = false;
 
   constructor(public emailService: EmailService,
               public dialog: MatDialog,
@@ -57,6 +61,7 @@ export class BucketDetailComponent implements OnInit {
       console.log("ROUTE PARAMS");
       this.team = params.get('team');
       this.bucket = params.get('bucket');
+      this.url=params.get('url');
       this.loadResource();
       this.syncService.register().subscribe((type: SYNC_TYPE) => {
         console.log("Sync", type)
@@ -134,12 +139,17 @@ export class BucketDetailComponent implements OnInit {
       this.bucket = params.get('bucket');
       this.urltoken=params.get(':token');
     });
-    this.urlService.generateUrl( {uuid:this.team, uniqueId:this.urluniqueid, token:this.urltoken, bucketName:this.bucket});
-    const dialogRef = this.dialog.open(UrlDialogComponent, {
-      width:"50vw",
-      data:{}
+    let urlDTO:UrlDTO=  {uuid:this.team, uniqueId:this.urluniqueid, token:this.urltoken, bucketName:this.bucket, url:null};
+    this.showProgress = true;
+    this.urlService.generateUrl(urlDTO).subscribe((urlDTO: UrlDTO)=>{
+      this.showProgress = false;
+        const dialogRef = this.dialog.open(UrlDialogComponent, {
+            width:"50vw",
+            data:urlDTO
+        });
+    }, error => {
+      this.showProgress = false;
     });
-    this.showMenu = false;
 
 
 

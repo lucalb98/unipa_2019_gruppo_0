@@ -1,13 +1,10 @@
 <mat-dialog-content>
-    <form class="form"  #bucketForm="ngForm">
-        <mat-form-field class="example-full-width">
-            <input type="text" id="testo "matInput name="name" placeholder="Invia l'url a chi desideri per condividere il file:" value="ciaoooooo">
-        </mat-form-field>
+            <p>{{url.url}}</p>
+
         <div>
             <!--button style="float: right" mat-flat-button color="primary" (click)="addEmail()">Invia EmailDTO</button-->
-            <input type="button" id="pulsante" [disabled]="bucketForm.invalid" style="float: right" mat-flat-button color="warn" >Copia</inputbutton>
+            <button type="button" style="float: right" mat-flat-button color="warn" >Copia</button>
         </div>
-    </form>
 </mat-dialog-content>
 
 

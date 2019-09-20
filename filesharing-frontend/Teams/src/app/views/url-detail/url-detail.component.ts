@@ -14,16 +14,21 @@ export class UrlDetailComponent implements OnInit {
   public uniqueId: string;
   private token: string;
   public bucketName: string;
+  public url:string;
 
   constructor(private urlService: UrlService,
       private router: ActivatedRoute) { }
 
   ngOnInit() {
+    this.router.paramMap.subscribe(params => {
+      console.log("ROUTE PARAMS");
+      this.url = params.get('url');
+    });
   }
 
 
   public downloadFile(){
-    this.urlService.download({uuid:this.uuid,uniqueId:this.uniqueId,token:this.token,bucketName:this.bucketName});
+    this.urlService.download({uuid:this.uuid,uniqueId:this.uniqueId,token:this.token,bucketName:this.bucketName,url:this.url});
   }
 
 }

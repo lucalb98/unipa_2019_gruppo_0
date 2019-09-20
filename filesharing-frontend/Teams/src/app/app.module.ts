@@ -35,6 +35,7 @@ import {AppAuthGuard} from "./keycloak/AuthGuard";
 import { OtpDetailComponent } from './views/otp-detail/otp-detail.component';
 import { UrlDetailComponent } from './views/url-detail/url-detail.component';
 import { UrlDialogComponent } from './dialog/url-dialog/url-dialog.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { UrlDialogComponent } from './dialog/url-dialog/url-dialog.component';
         ReactiveFormsModule,
         KeycloakAngularModule,
         _MatMenuDirectivesModule,
-        MatMenuModule
+        MatMenuModule,
+        MatProgressSpinnerModule
     ],
   providers:  [    {
     provide: APP_INITIALIZER,
