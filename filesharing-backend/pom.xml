@@ -1,25 +1,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>filesharing-backend</artifactId>
 	<parent>
-		<groupId>it.eng.unipa.filesharing</groupId> <artifactId>filesharing</artifactId>
+		<groupId>it.eng.unipa.filesharing</groupId> <artifactId>filesharing</artifactId> 
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<dependencies>
-
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-thymeleaf</artifactId>
 			<version>2.1.8.RELEASE</version>
-		</dependency>
+	</dependency>
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
 			<version>3.0.4.RELEASE</version>
 		</dependency>
-		<dependency>
+        <dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
 			<version>3.3.7</version>
@@ -28,7 +27,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version> 28.1-jre </version>
+			<version>19.0</version>
 		</dependency>
 
 		<dependency>
@@ -42,41 +41,48 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 			<version>2.0.6.RELEASE</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-			<version> 2.1.8.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.keycloak</groupId>
-			<artifactId>keycloak-spring-boot-starter</artifactId>
-			<version>4.8.3.Final</version>
-		</dependency>
 
 		<dependency>
-			<groupId>org.keycloak</groupId>
-			<artifactId>keycloak-spring-security-adapter</artifactId>
-			<version>4.8.3.Final</version>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-security</artifactId>
+			<version> 2.1.8.RELEASE</version>
 		</dependency>
+
+		 <dependency>
+			<groupId>org.keycloak</groupId>
+			<artifactId>keycloak-spring-boot-starter</artifactId>
+			 <version>4.8.3.Final</version>
+
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.keycloak</groupId>
+    		<artifactId>keycloak-spring-security-adapter</artifactId>
+			<version>4.8.3.Final</version>
+				</dependency>
 		<!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-spring-boot-adapter -->
 		<dependency>
 			<groupId>org.keycloak</groupId>
 			<artifactId>keycloak-spring-boot-adapter</artifactId>
 			<version>4.8.3.Final</version>
 		</dependency>
+
 		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency> -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version> 2.1.8.RELEASE</version>
 		</dependency>
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<version> 2.1.6.RELEASE</version>
 		</dependency>
-		<!-- <dependency> <groupId>com.h2database</groupId> <artifactId>h2</artifactId>
+		<!-- <dependency> <groupId>com.h2database</groupId> <artifactId>h2</artifactId> 
 			</dependency> -->
 		<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
 		<dependency>
@@ -85,13 +91,15 @@
 			<scope>runtime</scope>
 			<version>1.4.199
 			</version>
+
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<version> 2.1.8.RELEASE</version>
 		</dependency>
-		<dependency>
+			<dependency>
 			<groupId>it.eng.unipa.filesharing</groupId>
 			<artifactId>filesharing-resource</artifactId>
 			<version>${project.version}</version>
@@ -133,35 +141,36 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>cz.habarta.typescript-generator</groupId>
-				<artifactId>typescript-generator-maven-plugin</artifactId>
-				<version>2.14.505</version>
-				<executions>
-					<execution>
-						<id>generate</id>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<phase>process-classes</phase>
-					</execution>
-				</executions>
-				<configuration>
-					<jsonLibrary>jackson2</jsonLibrary>
-					<classes>
-						<class>it.eng.unipa.filesharing.dto.BucketDTO</class>
-						<class>it.eng.unipa.filesharing.dto.BucketTypeDTO</class>
-						<class>it.eng.unipa.filesharing.dto.FolderDTO</class>
-						<class>it.eng.unipa.filesharing.dto.MembershipDTO</class>
-						<class>it.eng.unipa.filesharing.dto.ResourceDTO</class>
-						<class>it.eng.unipa.filesharing.dto.TeamDTO</class>
-						<class>it.eng.unipa.filesharing.dto.UserRoleDTO</class>
-						<class>it.eng.unipa.filesharing.dto.EmailDTO</class>
-					</classes>
-					<outputKind>module</outputKind>
-					<outputFileType>implementationFile</outputFileType>
-				</configuration>
-			</plugin>
+
+           <plugin>
+               <groupId>cz.habarta.typescript-generator</groupId>
+               <artifactId>typescript-generator-maven-plugin</artifactId>
+               <version>2.14.505</version>
+               <executions>
+                   <execution>
+                       <id>generate</id>
+                       <goals>
+                           <goal>generate</goal>
+                       </goals>
+                       <phase>process-classes</phase>
+                   </execution>
+               </executions>
+               <configuration>
+                   <jsonLibrary>jackson2</jsonLibrary>
+                   <classes>
+                       <class>it.eng.unipa.filesharing.dto.BucketDTO</class>
+					   <class>it.eng.unipa.filesharing.dto.BucketTypeDTO</class>
+					   <class>it.eng.unipa.filesharing.dto.FolderDTO</class>
+					   <class>it.eng.unipa.filesharing.dto.MembershipDTO</class>
+					   <class>it.eng.unipa.filesharing.dto.ResourceDTO</class>
+					   <class>it.eng.unipa.filesharing.dto.TeamDTO</class>
+					   <class>it.eng.unipa.filesharing.dto.UserRoleDTO</class>
+                   </classes>
+                   <outputKind>module</outputKind>
+                   <outputFileType>implementationFile</outputFileType>
+               </configuration>
+           </plugin>
+
 		</plugins>
 	</build>
 </project>

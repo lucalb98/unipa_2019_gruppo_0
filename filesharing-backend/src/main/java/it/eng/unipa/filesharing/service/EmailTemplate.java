@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Map;
-
+/**
+ * @author shrisowdhaman
+ * Dec 18, 2017
+ */
 public class EmailTemplate {
     private String templateId;
     private String template;

@@ -1,58 +1,63 @@
 package it.eng.unipa.filesharing.container;
 
-import it.eng.unipa.filesharing.context.SecurityContext;
-import it.eng.unipa.filesharing.dto.OtpDTO;
-import it.eng.unipa.filesharing.dto.ResourceDTO;
-import it.eng.unipa.filesharing.model.Otp;
-import it.eng.unipa.filesharing.resource.ContentResource;
-import it.eng.unipa.filesharing.service.TeamService;
+import it.eng.unipa.filesharing.service.EmailServiceImpl;
+import it.eng.unipa.filesharing.service.EmailTemplate;
+import it.eng.unipa.filesharing.service.OtpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
-import org.springframework.core.convert.TypeDescriptor;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import it.eng.unipa.filesharing.service.EmailService;
 
-import java.io.ByteArrayInputStream;
-import java.util.UUID;
+import java.util.HashMap;
+import java.util.Map;
 
-@RestController
-@RequestMapping("/otp")
+@Controller
 public class OtpController {
-
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
-    OtpController otpController;
-
-
-
+    public OtpService otpService;
     @Autowired
-    EmailService emailService;
-
-    @PostMapping("/sendOtp")
-    public void sendOtp(@RequestBody OtpDTO otpDTO){
-        emailService.sendOtp(otpDTO);
+    public EmailServiceImpl myEmailService;
+    @GetMapping("/generateOtp")
+    public String generateOtp(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        int otp = otpService.generateOTP(username);
+        logger.info("OTP : "+otp);
+//Generate The Template to send OTP
+        EmailTemplate template = new EmailTemplate("SendOtp.html");
+        Map<String,String> replacements = new HashMap<String,String>();
+        replacements.put("user", username);
+        replacements.put("otpnum", String.valueOf(otp));
+        String message = template.getTemplate(replacements);
+        myEmailService.sendOtpMessage();
+        return "otppage";
     }
-
-
-    @PostMapping("/download")
-    public ResponseEntity<Resource> download(@RequestBody OtpDTO otpDTO) {
-        ResourceDTO resourceDTO = emailService.getContent(otpDTO);
-        return resourceDTO!=null ? getResponseEntityResource(resourceDTO.getName(), resourceDTO.getContent()) : new ResponseEntity<Resource>(HttpStatus.NOT_FOUND);
+    @RequestMapping(value ="/validateOtp", method = RequestMethod.GET)
+    public @ResponseBody String validateOtp(@RequestParam("otpnum") int otpnum){
+        final String SUCCESS = "Entered Otp is valid";
+        final String FAIL = "Entered Otp is NOT valid. Please Retry!";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        logger.info(" Otp Number : "+otpnum);
+//Validate the Otp
+        if(otpnum >= 0){
+            int serverOtp = otpService.getOtp(username);
+            if(serverOtp > 0){
+                if(otpnum == serverOtp){
+                    otpService.clearOTP(username);
+                    return ("Entered Otp is valid");
+                }else{
+                    return SUCCESS;
+                }
+            }else {
+                return FAIL;
+            }
+        }else {
+            return FAIL;
+        }
     }
-
-    private ResponseEntity<Resource> getResponseEntityResource(String name, byte[] body) {
-        return ResponseEntity.ok()
-                //.contentType(MediaType.parseMediaType("application/pdf"))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + name + "\"")
-                .header(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "Content-Disposition")
-                .body(new InputStreamResource(new ByteArrayInputStream(body)));
-    }
-
 }

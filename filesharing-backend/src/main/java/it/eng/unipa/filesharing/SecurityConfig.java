@@ -23,7 +23,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
     /**
      * Registers the KeycloakAuthenticationProvider with the authentication manager.
      */
-	
+
 	public SecurityConfig() {
 		LOGGER.info("------------start security--------------");
 	}
