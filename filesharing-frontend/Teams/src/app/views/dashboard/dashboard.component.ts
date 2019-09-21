@@ -10,7 +10,8 @@ import {BucketService} from "../../services/bucket.service";
 import {FolderDialogComponent} from "../../dialog/folder-dialog/folder-dialog.component";
 import {ResourceService} from "../../services/resource.service";
 import {SYNC_TYPE, SyncService} from "../../services/sync.service";
-import {EmailDialogComponent} from "../../dialog/email-dialog/email-dialog.component";
+import {InputErrorStateMatcherExample} from "../../dialog/email-dialog/email-dialog.component";
+
 import {EmailService} from "../../services/email.service";
 import {EmailDTO} from "../../models/EmailDTO";
 
@@ -138,7 +139,7 @@ export class DashboardComponent implements OnInit {
         });
     }
     openDialogEmail():void {
-        const dialogRef = this.dialog.open(EmailDialogComponent, {
+        const dialogRef = this.dialog.open(InputErrorStateMatcherExample, {
             width: '50vw',
             data: {}
         });

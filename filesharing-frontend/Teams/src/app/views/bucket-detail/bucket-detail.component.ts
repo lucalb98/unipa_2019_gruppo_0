@@ -8,7 +8,7 @@ import {UploadProgressModel} from "../../models/UploadProgressModel";
 import {HttpEventType} from "@angular/common/http";
 import {TeamDialogComponent} from "../../dialog/team-dialog/team-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
-import {EmailDialogComponent} from "../../dialog/email-dialog/email-dialog.component";
+import {InputErrorStateMatcherExample} from "../../dialog/email-dialog/email-dialog.component";
 import {EmailService} from "../../services/email.service";
 import {EmailDTO} from "../../models/EmailDTO";
 import {ResourceDTO, TeamDTO} from "../../models/models";
@@ -157,7 +157,7 @@ export class BucketDetailComponent implements OnInit {
   }
 
   openDialogEmail(uniqueId: string):void {
-    const dialogRef = this.dialog.open(EmailDialogComponent, {
+    const dialogRef = this.dialog.open(InputErrorStateMatcherExample, {
       width:"50vw",
       data:{}
     });

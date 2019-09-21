@@ -2,7 +2,15 @@
 <mat-dialog-content>
     <form class="form"  #bucketForm="ngForm">
         <mat-form-field class="example-full-width">
-            <input matInput name="name" placeholder="INSERISCI L'EMAIL DEL DESTINATARIO" required [(ngModel)]="email">
+            <input matInput name="name" placeholder="Inserisci email del destinatario"   required [(ngModel)]="email"  [formControl]="emailFormControl" [errorStateMatcher]="matcher" >
+            <mat-hint>Esempio: utente@dominio.com</mat-hint>
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Inserisci un indirizzo email valido
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+                Campo <strong>obbligatorio</strong>
+            </mat-error>
+            <!--input matInput name="name" placeholder="INSERISCI L'EMAIL DEL DESTINATARIO" required [(ngModel)]="email"-->
         </mat-form-field>
         <div>
             <!--button style="float: right" mat-flat-button color="primary" (click)="addEmail()">Invia EmailDTO</button-->

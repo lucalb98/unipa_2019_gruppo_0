@@ -30,7 +30,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { FolderDialogComponent } from './dialog/folder-dialog/folder-dialog.component';
 import { FoldersComponent } from './views/folders/folders.component';
 import { MemberPipe } from './pipe/member.pipe';
-import { EmailDialogComponent } from './dialog/email-dialog/email-dialog.component';
+import {InputErrorStateMatcherExample} from './dialog/email-dialog/email-dialog.component';
 import {AppAuthGuard} from "./keycloak/AuthGuard";
 import { OtpDetailComponent } from './views/otp-detail/otp-detail.component';
 import { UrlDetailComponent } from './views/url-detail/url-detail.component';
@@ -38,6 +38,7 @@ import { UrlDialogComponent } from './dialog/url-dialog/url-dialog.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import { SnackBarComponent } from './dialog/snack-bar/snack-bar.component';
+import { FiltroEmailComponent } from './dialog/filtro-email/filtro-email.component';
 
 
 @NgModule({
@@ -56,11 +57,11 @@ import { SnackBarComponent } from './dialog/snack-bar/snack-bar.component';
     FolderDialogComponent,
     FoldersComponent,
     MemberPipe,
-    EmailDialogComponent,
     OtpDetailComponent,
     UrlDetailComponent,
     UrlDialogComponent,
-    SnackBarComponent
+    SnackBarComponent,
+      InputErrorStateMatcherExample
   ],
     imports: [
         HttpClientModule,
@@ -94,7 +95,7 @@ import { SnackBarComponent } from './dialog/snack-bar/snack-bar.component';
   entryComponents:[
     TeamDialogComponent,
     BucketDialogComponent,
-    FolderDialogComponent, EmailDialogComponent,UrlDialogComponent
+    FolderDialogComponent,InputErrorStateMatcherExample ,UrlDialogComponent
   ],
   bootstrap: [AppComponent]
 })
