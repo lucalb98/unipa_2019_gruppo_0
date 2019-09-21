@@ -17,6 +17,7 @@
 }
 
 .card-pf{
+  border-radius: 8px;
   background: #fff;
   margin: 0 auto;
   padding: 0 20px;
@@ -28,8 +29,19 @@
   //horiz-align: center;
   position: absolute;
   top: 20%; //200px;
-  left: 30% ;//585px;
+  left: 35% ;//585px;
 }
+.bottone{
+  position: absolute;
+  top:45%;
+  left:30%;
 
+
+}
+.ale{
+  float: right;
+  font-size: 25px;
+  padding: 16px 40px;
+}
 
 

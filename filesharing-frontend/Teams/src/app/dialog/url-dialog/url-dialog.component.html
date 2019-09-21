@@ -1,10 +1,11 @@
 <mat-dialog-content>
-            <p>{{url.url}}</p>
+    <p>URL di condivisione pubblico:<br><br><br><b>{{url.url}}</b>
 
         <div>
             <!--button style="float: right" mat-flat-button color="primary" (click)="addEmail()">Invia EmailDTO</button-->
-            <button type="button" style="float: right" mat-flat-button color="warn" >Copia</button>
+            <button (click)="copyMessage(this.urlstring)"  value="Copia" type="button" style="float: right" mat-flat-button color="warn" >Copia</button>
         </div>
+
 </mat-dialog-content>
 
 

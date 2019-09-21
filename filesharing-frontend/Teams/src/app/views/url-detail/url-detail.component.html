@@ -1,10 +1,10 @@
 <div class="finestra">
     <div class="card-pf">
-        <h2 mat-dialog-title>Clicca sul pulsante sotto per scaricare il file</h2>
+        <h1 align="center" mat-dialog-title><br><br><b>Clicca sul pulsante sotto per scaricare il file</b></h1>
         <mat-dialog-content>
             <form  class="form" #bucketForm="ngForm">
-                <div>
-                    <button mat-raised-button [disabled]="bucketForm.invalid" style="float: right" color="warn" (click)="downloadFile()">Scarica File</button>
+                <div class="bottone">
+                    <button mat-raised-button [disabled]="bucketForm.invalid" class="ale" color="primary" (click)="downloadFile()">DOWNLOAD</button>
                 </div>
             </form>
         </mat-dialog-content>

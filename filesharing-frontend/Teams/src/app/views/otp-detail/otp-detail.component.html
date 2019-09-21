@@ -1,13 +1,13 @@
 <div class="finestra">
 <div class="card-pf">
-    <h2 mat-dialog-title>Inserisci il codice di verifica che ti è stato inviato al seguente indirizzo: {{email}} </h2>
+    <h2 mat-dialog-title><br>Inserisci il codice di verifica che ti è stato inviato al seguente indirizzo: <b>{{email}}</b> </h2>
     <mat-dialog-content>
         <form  class="form" #bucketForm="ngForm">
             <mat-form-field class="example-full-width"  >
                 <input type="text" matInput name="name" placeholder="Esempio: 123456 "  required [(ngModel)]="otp">
             </mat-form-field>
             <div>
-                <button mat-raised-button [disabled]="bucketForm.invalid" style="float: right" color="warn" (click)="verificaOTP()">Verifica OTP E Scarica</button>
+                <button mat-raised-button [disabled]="bucketForm.invalid" style="float: right" class="ale" color="primary" (click)="verificaOTP()">Verifica OTP E Scarica</button>
             </div>
         </form>
     </mat-dialog-content>

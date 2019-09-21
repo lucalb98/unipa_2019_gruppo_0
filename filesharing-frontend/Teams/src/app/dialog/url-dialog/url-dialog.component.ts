@@ -10,22 +10,29 @@ import {UrlService} from "../../services/url.service";
   styleUrls: ['./url-dialog.component.scss']
 })
 export class UrlDialogComponent implements OnInit {
+  urlstring:string;
   constructor( public dialogRef: MatDialogRef<UrlDialogComponent>,
                @Inject(MAT_DIALOG_DATA) public url: UrlDTO) {
   }
 
   ngOnInit(){
-
+  this.urlstring=this.url.url;
   }
 
-  copiaUrl(){
 
-      //document.querySelector("#pulsante")=function() {
-      //document.querySelector("testo");
-      //document.execCommand('copy');
-      //}
+  copyMessage(val: string){
+      let selBox = document.createElement('textarea');
+      selBox.style.position = 'fixed';
+      selBox.style.left = '0';
+      selBox.style.top = '0';
+      selBox.style.opacity = '0';
+      selBox.value = val;
+      document.body.appendChild(selBox);
+      selBox.focus();
+      selBox.select();
+      document.execCommand('copy');
+      document.body.removeChild(selBox);
+    }
 
-   // this.dialogRef.close(this.url);
-  }
 
 }

@@ -14,11 +14,12 @@
 }
 
 .form{
-  display: flex;
+   isplay: flex;
   flex-direction: column;
 }
 
 .card-pf{
+  border-radius: 8px;
   background: #fff;
   margin: 0 auto;
   padding: 0 20px;
@@ -30,8 +31,12 @@
   //horiz-align: center;
   position: absolute;
   top: 20%; //200px;
-  left: 30% ;//585px;
+  left: 35% ;//585px;
 }
-
+.ale{
+  float: right;
+  font-size: 18px;
+  padding: 10px 40px;
+}
 
 
