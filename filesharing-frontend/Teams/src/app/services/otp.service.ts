@@ -3,15 +3,20 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {OtpDTO} from "../models/OtpDTO";
 import {share} from "rxjs/operators";
+import {MatSnackBar} from "@angular/material/snack-bar";
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class OtpService {
 
+
   private baseUrl: string = environment.apiBaseUrl+"/otp";
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient,
+              public _snackBar:MatSnackBar){ }
 
   public sendOtp(otpDTO: OtpDTO){
     return this.httpClient.post(this.baseUrl+'/sendOtp', otpDTO);
@@ -20,9 +25,17 @@ export class OtpService {
   public download(otpDTO: OtpDTO){
     let reg = this.httpClient.post(this.baseUrl+'/download', otpDTO, {responseType: 'arraybuffer', observe: 'response'}).pipe(share());
     reg.subscribe(res => {
+      this._snackBar.open('Download in corso...', '',{
+        duration:3000
+      });
       return this.downLoadFile(res);
+    }, error => {
+      this._snackBar.open('Codice errato o scaduto, controlla che sia corretto o premi Rinvia OTP', '',{
+        duration:3000
     });
     return reg;
+
+  });
   }
 
   private downLoadFile(data: any) {

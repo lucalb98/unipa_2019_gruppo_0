@@ -15,14 +15,15 @@ export class OtpDetailComponent implements OnInit {
   public otp: number;
 
   constructor(private otpService: OtpService,
-              private router: ActivatedRoute) { }
+              private router: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.router.paramMap.subscribe(params => {
       console.log("ROUTE PARAMS");
       this.token = params.get('token');
       this.email = params.get('email');
-      this.otpService.sendOtp({email: this.email, token: this.token, otp: null}).subscribe(data=>{
+      this.otpService.sendOtp({email: this.email, token: this.token, otp: null}).subscribe(data => {
         console.log("Inviata");
       }, (error => {
         console.log(error);
@@ -30,9 +31,22 @@ export class OtpDetailComponent implements OnInit {
     });
   }
 
-  verificaOTP(){
-    console.log("sono download file del frontend");
-    console.log(this.email,this.token);
-    this.otpService.download({email:this.email,token:this.token,otp:this.otp});
+  verificaOTP() {
+
+    this.otpService.download({email: this.email, token: this.token, otp: this.otp});
+  }
+
+  rinvioOTP() {
+    this.router.paramMap.subscribe(params => {
+      console.log("ROUTE PARAMS");
+      this.token = params.get('token');
+      this.email = params.get('email');
+      this.otpService.sendOtp({email: this.email, token: this.token, otp: null}).subscribe(data => {
+        console.log("Inviata");
+      }, (error => {
+        console.log(error);
+      }))
+    });
+
   }
 }

@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {UrlDTO} from "../models/UrlDTO";
 import {share} from "rxjs/operators";
 import {Observable} from "rxjs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 
@@ -14,7 +15,8 @@ export class UrlService {
   private baseUrl: string = environment.apiBaseUrl + "/url";
 
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private _snackBar: MatSnackBar) {
   }
 
   public generateUrl(urlDTO:UrlDTO):Observable<UrlDTO> {
@@ -24,7 +26,14 @@ export class UrlService {
   public download(urlDTO: UrlDTO) {
     let reg = this.httpClient.post(this.baseUrl+'/download', urlDTO, {responseType: 'arraybuffer', observe: 'response'}).pipe(share());
     reg.subscribe(res => {
+     this._snackBar.open("Download in corso...","",{
+        duration: 3000
+      });
       return this.downLoadFile(res);
+    },error => {
+      this._snackBar.open("URL scaduto o errato!","",{
+        duration:3000
+      });
     });
     return reg;
   }

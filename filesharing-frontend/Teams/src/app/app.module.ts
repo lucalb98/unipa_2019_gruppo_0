@@ -36,6 +36,9 @@ import { OtpDetailComponent } from './views/otp-detail/otp-detail.component';
 import { UrlDetailComponent } from './views/url-detail/url-detail.component';
 import { UrlDialogComponent } from './dialog/url-dialog/url-dialog.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import { SnackBarComponent } from './dialog/snack-bar/snack-bar.component';
+
 
 @NgModule({
   declarations: [
@@ -56,7 +59,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     EmailDialogComponent,
     OtpDetailComponent,
     UrlDetailComponent,
-    UrlDialogComponent
+    UrlDialogComponent,
+    SnackBarComponent
   ],
     imports: [
         HttpClientModule,
@@ -77,7 +81,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         KeycloakAngularModule,
         _MatMenuDirectivesModule,
         MatMenuModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatSnackBarModule
     ],
   providers:  [    {
     provide: APP_INITIALIZER,
