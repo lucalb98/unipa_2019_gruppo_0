@@ -29,8 +29,7 @@ export class UrlDetailComponent implements OnInit {
 
 
   public downloadFile(){
-    console.log("sono download file del frontend");
-    console.log(this.uuid,this.token);
+
     this.urlService.download({uuid:this.uuid,uniqueId:this.uniqueId,token:this.token,bucketName:this.bucketName,url:this.url});
   }
 

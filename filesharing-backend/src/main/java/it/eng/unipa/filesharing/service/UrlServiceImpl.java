@@ -40,8 +40,6 @@ public class UrlServiceImpl implements UrlService {
     public UrlDTO generateURL(UrlDTO urlDTO) {
         ResourceDTO resourceDTO = teamService.getContent(urlDTO.getUuid(), urlDTO.getBucketName(), urlDTO.getUniqueId());
 
-        System.out.println("DTO:" + urlDTO.getUuid());
-
         if (resourceDTO != null) {
             Url url = new Url();
             url.setBucketName(urlDTO.getBucketName());
@@ -52,21 +50,10 @@ public class UrlServiceImpl implements UrlService {
             String urlString = this.sharedUrl + "/" + url.getToken();
             url.setUrl(urlString);
 
-            System.out.println("model"+ url.getUuid());
-
             urlRepository.save(url);
 
             urlDTO.setToken(url.getToken());
             urlDTO.setUrl(url.getUrl());
-
-
-
-
-            //////////////
-            System.out.println("Sono il service con generate url");
-            System.out.println("Token:"+urlDTO.getToken());
-
-            //////////////
 
             return urlDTO;
         }
@@ -76,11 +63,7 @@ public class UrlServiceImpl implements UrlService {
 
     @Override
     public ResourceDTO getContent(UrlDTO urlDTO) {
-        System.out.println("sono il service con getcontent");
-        System.out.println("Token:"+urlDTO.getToken());
-
         Optional<Url> urlOpt = urlRepository.myUrl(urlDTO.getToken());
-        System.out.println("ciao");
         if (urlOpt.isPresent()) {
             Url url = urlOpt.get();
             if (System.currentTimeMillis() < url.getDataScadenza().getTime()) {

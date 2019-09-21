@@ -30,9 +30,6 @@ public class UrlController {
 
     @PostMapping("/download")
     public ResponseEntity<Resource> download(@RequestBody UrlDTO urlDTO) {
-        System.out.println("Sno il controller con download");
-        System.out.println("Token:"+urlDTO.getToken());
-
         ResourceDTO resourceDTO = urlService.getContent(urlDTO);
         return resourceDTO!=null ? getResponseEntityResource(resourceDTO.getName(), resourceDTO.getContent()) : new ResponseEntity<Resource>(HttpStatus.NOT_FOUND);
     }
