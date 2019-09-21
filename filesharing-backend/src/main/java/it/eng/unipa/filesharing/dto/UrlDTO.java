@@ -1,13 +1,11 @@
 package it.eng.unipa.filesharing.dto;
 
-import java.util.Date;
 import java.util.UUID;
 
 public class UrlDTO {
     UUID uuid;
     String uniqueId;
     String token;
-    Date dataScadenza=null;
     String bucketName;
     String url;
 
@@ -53,11 +51,6 @@ public class UrlDTO {
         this.token = token;
     }
 
-    public Date getDataScadenza() {
-        return dataScadenza;
-    }
 
-    public void setDataScadenza(Date dataScadenza) {
-        this.dataScadenza = dataScadenza;
-    }
+
 }

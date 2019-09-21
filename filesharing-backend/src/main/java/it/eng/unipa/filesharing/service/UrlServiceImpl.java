@@ -22,7 +22,7 @@ import java.util.UUID;
 @Service
 @Transactional
 public class UrlServiceImpl implements UrlService {
-    private static final long TEMPO_VALIDITA = 3600;
+    private static final long TEMPO_VALIDITA = 3600 * 1000 ;
     @Value("${sharedUrl}")
     String sharedUrl;
     @Autowired
@@ -36,10 +36,51 @@ public class UrlServiceImpl implements UrlService {
     @Autowired
     ConversionService conversionService;
 
+  @Override
+    public UrlDTO generateURL(UrlDTO urlDTO) {
+        ResourceDTO resourceDTO = teamService.getContent(urlDTO.getUuid(), urlDTO.getBucketName(), urlDTO.getUniqueId());
 
-       @Override
-       public ResourceDTO getContent(UrlDTO urlDTO) {
-        Optional<Url> urlOpt = urlRepository.myUrl(urlDTO.getUuid(), urlDTO.getToken());
+        System.out.println("DTO:" + urlDTO.getUuid());
+
+        if (resourceDTO != null) {
+            Url url = new Url();
+            url.setBucketName(urlDTO.getBucketName());
+            url.setUuid(urlDTO.getUuid());
+            url.setUniqueId(urlDTO.getUniqueId());
+            url.setToken(UUID.randomUUID().toString());
+            url.setDataScadenza(new Timestamp(System.currentTimeMillis() + TEMPO_VALIDITA));
+            String urlString = this.sharedUrl + "/" + url.getToken();
+            url.setUrl(urlString);
+
+            System.out.println("model"+ url.getUuid());
+
+            urlRepository.save(url);
+
+            urlDTO.setToken(url.getToken());
+            urlDTO.setUrl(url.getUrl());
+
+
+
+
+            //////////////
+            System.out.println("Sono il service con generate url");
+            System.out.println("Token:"+urlDTO.getToken());
+
+            //////////////
+
+            return urlDTO;
+        }
+        return null;
+    }
+
+
+    @Override
+    public ResourceDTO getContent(UrlDTO urlDTO) {
+        System.out.println("sono il service con getcontent");
+        System.out.println("Token:"+urlDTO.getToken());
+
+        Optional<Url> urlOpt = urlRepository.myUrl(urlDTO.getToken());
+        System.out.println("ciao");
         if (urlOpt.isPresent()) {
             Url url = urlOpt.get();
             if (System.currentTimeMillis() < url.getDataScadenza().getTime()) {
@@ -54,27 +95,4 @@ public class UrlServiceImpl implements UrlService {
         }
         return null;
     }
-
-    @Override
-    public UrlDTO generateURL(UrlDTO urlDTO) {
-        ResourceDTO resourceDTO = teamService.getContent(urlDTO.getUuid(), urlDTO.getBucketName(), urlDTO.getUniqueId());
-
-        if (resourceDTO != null) {
-            Url url = new Url();
-            url.setBucketName(urlDTO.getBucketName());
-            url.setUuid(url.getUuid());
-            url.setUniqueId(urlDTO.getUniqueId());
-            url.setToken(UUID.randomUUID().toString());
-            url.setDataScadenza(new Timestamp(System.currentTimeMillis() + TEMPO_VALIDITA));
-            String urlString = this.sharedUrl + "/" + url.getToken();
-            url.setUrl(urlString);
-            urlDTO.setUrl(urlString);
-            urlRepository.save(url);
-           return urlDTO;
-        }
-        return null;
-    }
-  }
-
-
-
+}

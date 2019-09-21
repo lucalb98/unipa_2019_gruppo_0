@@ -31,7 +31,8 @@ export class OtpDetailComponent implements OnInit {
   }
 
   verificaOTP(){
-
+    console.log("sono download file del frontend");
+    console.log(this.email,this.token);
     this.otpService.download({email:this.email,token:this.token,otp:this.otp});
   }
 }

@@ -10,10 +10,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface UrlRepository extends JpaRepository<Url,Long> {
+public interface UrlRepository extends JpaRepository<Url,UUID> {
 
-    @Query("select u from Url u where u.uuid=:uuid and u.token=:token")
-     Optional<Url> myUrl(@Param("uuid") UUID uuid, @Param("token") String token);
+
+    @Query("select u from Url u where u.token=:token")
+    Optional<Url> myUrl( @Param("token") String token);
 
 
 }
